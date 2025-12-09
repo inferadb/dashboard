@@ -1,6 +1,6 @@
 const API_BASE_URL =
-  typeof process !== "undefined" && process.env.MANAGEMENT_API_URL
-    ? process.env.MANAGEMENT_API_URL
+  typeof process !== "undefined" && process.env.CONTROL_API_URL
+    ? process.env.CONTROL_API_URL
     : "http://localhost:8081";
 
 export interface ApiError {

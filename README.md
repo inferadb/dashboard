@@ -25,13 +25,12 @@ Open [http://localhost:5173](http://localhost:5173).
 
 ## Stack
 
-| Technology    | Purpose              |
-| ------------- | -------------------- |
-| TanStack Start| Full-stack framework |
-| React         | UI components        |
-| Hono          | API routes           |
-| Tailwind CSS  | Styling              |
-| Vite          | Build tooling        |
+| Technology     | Purpose              |
+| -------------- | -------------------- |
+| TanStack Start | Full-stack framework |
+| React          | UI components        |
+| Tailwind CSS   | Styling              |
+| Vite           | Build tooling        |
 
 ## Development
 
@@ -44,10 +43,10 @@ npm run test      # Run tests
 
 ## Configuration
 
-| Variable              | Default                 | Description          |
-| --------------------- | ----------------------- | -------------------- |
-| `MANAGEMENT_API_URL`  | `http://localhost:8081` | Management API       |
-| `SERVER_API_URL`      | `http://localhost:8080` | Server API           |
+| Variable          | Default                 | Description |
+| ----------------- | ----------------------- | ----------- |
+| `CONTROL_API_URL` | `http://localhost:8081` | Control API |
+| `ENGINE_API_URL`  | `http://localhost:8080` | Engine API  |
 
 ## License
 
