@@ -1,7 +1,6 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { Key, Users, Vault } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { formatDateTime } from "@/lib/utils";
 
 export const Route = createFileRoute("/_authed/organizations/$orgId/")({
@@ -12,7 +11,6 @@ function OrganizationOverview() {
   const { organization } = Route.useRouteContext() as {
     organization: { id: string; name: string; slug: string; created_at: string };
   };
-  const { orgId } = Route.useParams();
 
   return (
     <div className="space-y-6">
@@ -25,9 +23,7 @@ function OrganizationOverview() {
           </CardHeader>
           <CardContent>
             <p className="text-2xl font-bold">0</p>
-            <Button variant="link" className="h-auto p-0 text-xs" asChild>
-              <Link to={`/organizations/${orgId}/vaults`}>View all</Link>
-            </Button>
+            <p className="text-xs text-muted-foreground">Coming soon</p>
           </CardContent>
         </Card>
 
@@ -38,9 +34,7 @@ function OrganizationOverview() {
           </CardHeader>
           <CardContent>
             <p className="text-2xl font-bold">0</p>
-            <Button variant="link" className="h-auto p-0 text-xs" asChild>
-              <Link to={`/organizations/${orgId}/teams`}>View all</Link>
-            </Button>
+            <p className="text-xs text-muted-foreground">Coming soon</p>
           </CardContent>
         </Card>
 
@@ -51,9 +45,7 @@ function OrganizationOverview() {
           </CardHeader>
           <CardContent>
             <p className="text-2xl font-bold">0</p>
-            <Button variant="link" className="h-auto p-0 text-xs" asChild>
-              <Link to={`/organizations/${orgId}/clients`}>View all</Link>
-            </Button>
+            <p className="text-xs text-muted-foreground">Coming soon</p>
           </CardContent>
         </Card>
       </div>
