@@ -50,31 +50,42 @@ export interface Team {
 export interface TeamMember {
   user_id: string;
   team_id: string;
+  is_manager: boolean;
   created_at: string;
   user: User;
 }
 
 // Vault types
-export type VaultRole = "admin" | "manager" | "editor" | "writer" | "reader";
-export type VaultEnvironment = "development" | "staging" | "production";
+export type VaultRole = "admin" | "manager" | "writer" | "reader";
+export type VaultSyncStatus = "pending" | "synced" | "sync_failed";
 
 export interface Vault {
   id: string;
   org_id: string;
   name: string;
-  environment: VaultEnvironment;
+  description: string | null;
+  sync_status: VaultSyncStatus;
   created_at: string;
   updated_at: string;
   suspended_at: string | null;
 }
 
-export interface VaultGrant {
+export interface VaultUserGrant {
   id: string;
   vault_id: string;
+  user_id: string;
   role: VaultRole;
   created_at: string;
-  user?: User;
-  team?: Team;
+  user: User;
+}
+
+export interface VaultTeamGrant {
+  id: string;
+  vault_id: string;
+  team_id: string;
+  role: VaultRole;
+  created_at: string;
+  team: Team;
 }
 
 // Client types
@@ -83,7 +94,7 @@ export interface Client {
   org_id: string;
   name: string;
   description: string | null;
-  active: boolean;
+  is_active: boolean;
   created_at: string;
   updated_at: string;
 }
@@ -91,10 +102,16 @@ export interface Client {
 export interface ClientCertificate {
   id: string;
   client_id: string;
-  fingerprint: string;
+  kid: string;
+  name: string;
+  public_key: string;
+  is_active: boolean;
   created_at: string;
-  expires_at: string | null;
-  revoked_at: string | null;
+}
+
+export interface CreateCertificateResponse {
+  certificate: ClientCertificate;
+  private_key: string;
 }
 
 // Session types

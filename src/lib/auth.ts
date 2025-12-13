@@ -31,3 +31,31 @@ export async function verifyEmail(token: string): Promise<void> {
 export async function resendVerification(): Promise<void> {
   await api.post("/v1/auth/resend-verification");
 }
+
+export async function updateProfile(data: { name?: string }): Promise<User> {
+  return api.patch<User>("/v1/users/me", data);
+}
+
+export async function changePassword(data: {
+  current_password: string;
+  new_password: string;
+}): Promise<void> {
+  await api.post("/v1/users/me/password", data);
+}
+
+// Session management
+import type { Session } from "@/types/api";
+import type { PaginatedResponse } from "./api";
+
+export async function getSessions(): Promise<Session[]> {
+  const response = await api.get<PaginatedResponse<Session>>("/v1/users/sessions");
+  return response.data;
+}
+
+export async function revokeSession(sessionId: string): Promise<void> {
+  await api.delete(`/v1/users/sessions/${sessionId}`);
+}
+
+export async function revokeOtherSessions(): Promise<void> {
+  await api.post("/v1/users/sessions/revoke-others");
+}

@@ -6,9 +6,14 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import type { ReactNode } from "react";
+import { Toaster } from "@/components/ui/toaster";
+import { NotFoundComponent } from "./_404";
+import { RouteErrorComponent } from "@/components/error-boundary";
 import "@/styles.css";
 
 export const Route = createRootRoute({
+  notFoundComponent: NotFoundComponent,
+  errorComponent: RouteErrorComponent,
   head: () => ({
     meta: [
       { charSet: "utf-8" },
@@ -56,6 +61,7 @@ function RootDocument({ children }: { children: ReactNode }) {
       </head>
       <body className="min-h-screen bg-background font-sans">
         {children}
+        <Toaster />
         <ScrollRestoration />
         <Scripts />
       </body>

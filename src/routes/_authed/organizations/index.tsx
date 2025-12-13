@@ -1,6 +1,6 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
-import { Building2, Plus, MoreHorizontal } from "lucide-react";
+import { Building2, MoreHorizontal, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -14,6 +14,7 @@ import { Label } from "@/components/ui/label";
 import { getOrganizations, createOrganization } from "@/lib/organizations";
 import { ApiClientError } from "@/lib/api";
 import { formatRelativeTime } from "@/lib/utils";
+import { CardGridSkeleton } from "@/components/loading-skeletons";
 import type { Organization } from "@/types/api";
 
 export const Route = createFileRoute("/_authed/organizations/")({
@@ -22,7 +23,24 @@ export const Route = createFileRoute("/_authed/organizations/")({
     return { organizations };
   },
   component: OrganizationsPage,
+  pendingComponent: OrganizationsPageSkeleton,
 });
+
+function OrganizationsPageSkeleton() {
+  return (
+    <div className="space-y-6">
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-2xl font-bold tracking-tight">Organizations</h1>
+          <p className="text-muted-foreground">
+            Manage your organizations and their resources.
+          </p>
+        </div>
+      </div>
+      <CardGridSkeleton count={3} />
+    </div>
+  );
+}
 
 function OrganizationsPage() {
   const { organizations } = Route.useLoaderData();
