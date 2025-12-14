@@ -9,7 +9,12 @@ export const Route = createFileRoute("/_authed/dashboard")({
 });
 
 function DashboardPage() {
-  const { user } = Route.useRouteContext() as { user: User };
+  const { user } = Route.useRouteContext() as { user: User | null };
+
+  // During SSR, user is null - parent layout will show loading state
+  if (!user) {
+    return null;
+  }
 
   return (
     <div className="space-y-6">

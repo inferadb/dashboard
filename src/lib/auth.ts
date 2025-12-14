@@ -2,6 +2,12 @@ import { api, ApiClientError } from "./api";
 import type { User, AuthResponse, LoginRequest, RegisterRequest } from "@/types/api";
 
 export async function getCurrentUser(): Promise<User | null> {
+  // Skip API call during SSR - the API client uses relative URLs which don't work server-side
+  // Auth will be checked client-side after hydration
+  if (typeof window === "undefined") {
+    return null;
+  }
+
   try {
     return await api.get<User>("/v1/users/me");
   } catch (error) {

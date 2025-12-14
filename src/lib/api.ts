@@ -1,7 +1,8 @@
-const API_BASE_URL =
-  typeof process !== "undefined" && process.env.CONTROL_API_URL
-    ? process.env.CONTROL_API_URL
-    : "http://localhost:8081";
+// Use relative URLs for API requests
+// - Client-side: requests are proxied through the dashboard server to Control API
+// - Server-side (SSR): should avoid making authenticated API calls (no cookie context)
+//   If SSR needs to make API calls, consider using server functions or getRequestHeaders()
+const API_BASE_URL = "";
 
 export interface ApiError {
   error: {
