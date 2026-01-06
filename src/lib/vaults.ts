@@ -1,5 +1,10 @@
 import { api, type PaginatedResponse } from "./api";
-import type { Vault, VaultUserGrant, VaultTeamGrant, VaultRole } from "@/types/api";
+import type {
+  Vault,
+  VaultUserGrant,
+  VaultTeamGrant,
+  VaultRole,
+} from "@/types/api";
 
 // Vault CRUD
 export async function getVaults(orgId: string): Promise<Vault[]> {
@@ -25,10 +30,7 @@ export async function updateVault(
   vaultId: string,
   data: { name: string; description?: string }
 ): Promise<Vault> {
-  return api.patch<Vault>(
-    `/v1/organizations/${orgId}/vaults/${vaultId}`,
-    data
-  );
+  return api.patch<Vault>(`/v1/organizations/${orgId}/vaults/${vaultId}`, data);
 }
 
 export async function deleteVault(

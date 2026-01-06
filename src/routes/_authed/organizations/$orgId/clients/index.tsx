@@ -26,9 +26,7 @@ import { formatDateTime } from "@/lib/utils";
 import { CardGridSkeleton } from "@/components/loading-skeletons";
 import type { Client } from "@/types/api";
 
-export const Route = createFileRoute(
-  "/_authed/organizations/$orgId/clients/"
-)({
+export const Route = createFileRoute("/_authed/organizations/$orgId/clients/")({
   loader: async ({ params }) => {
     const clients = await getClients(params.orgId);
     return { clients };

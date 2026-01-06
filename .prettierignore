@@ -1,0 +1,16 @@
+# Build outputs
+dist/
+.output/
+.vinxi/
+.tanstack/
+
+# Dependencies
+node_modules/
+
+# Generated files
+src/routeTree.gen.ts
+package-lock.json
+
+# Config files that shouldn't be reformatted
+*.config.js
+*.config.ts

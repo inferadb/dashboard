@@ -9,7 +9,12 @@ export const Route = createFileRoute("/_authed/organizations/$orgId/")({
 
 function OrganizationOverview() {
   const { organization } = Route.useRouteContext() as {
-    organization: { id: string; name: string; slug: string; created_at: string };
+    organization: {
+      id: string;
+      name: string;
+      slug: string;
+      created_at: string;
+    };
   };
 
   return (

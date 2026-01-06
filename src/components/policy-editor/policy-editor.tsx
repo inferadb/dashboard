@@ -1,8 +1,26 @@
 import { useEffect, useRef, useCallback, useState } from "react";
-import { EditorView, keymap, lineNumbers, highlightActiveLine, highlightActiveLineGutter, drawSelection, dropCursor } from "@codemirror/view";
+import {
+  EditorView,
+  keymap,
+  lineNumbers,
+  highlightActiveLine,
+  highlightActiveLineGutter,
+  drawSelection,
+  dropCursor,
+} from "@codemirror/view";
 import { EditorState, Extension } from "@codemirror/state";
-import { defaultKeymap, history, historyKeymap, indentWithTab } from "@codemirror/commands";
-import { bracketMatching, foldGutter, foldKeymap, indentOnInput } from "@codemirror/language";
+import {
+  defaultKeymap,
+  history,
+  historyKeymap,
+  indentWithTab,
+} from "@codemirror/commands";
+import {
+  bracketMatching,
+  foldGutter,
+  foldKeymap,
+  indentOnInput,
+} from "@codemirror/language";
 import { searchKeymap, highlightSelectionMatches } from "@codemirror/search";
 import { lintGutter } from "@codemirror/lint";
 import { closeBrackets, closeBracketsKeymap } from "@codemirror/autocomplete";
@@ -13,7 +31,15 @@ import { iplLinter, validateIPLDocument } from "./ipl-linter";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { AlertCircle, CheckCircle2, Copy, Download, Loader2, Save, Upload } from "lucide-react";
+import {
+  AlertCircle,
+  CheckCircle2,
+  Copy,
+  Download,
+  Loader2,
+  Save,
+  Upload,
+} from "lucide-react";
 
 export interface PolicyEditorProps {
   value: string;
@@ -106,8 +132,11 @@ export function PolicyEditor({
             const result = validateIPLDocument(newValue);
             setValidationStatus({
               valid: result.valid,
-              errorCount: result.errors.filter((e) => e.severity === "error").length,
-              warningCount: result.errors.filter((e) => e.severity === "warning").length,
+              errorCount: result.errors.filter((e) => e.severity === "error")
+                .length,
+              warningCount: result.errors.filter(
+                (e) => e.severity === "warning"
+              ).length,
             });
           }
         }
@@ -137,7 +166,8 @@ export function PolicyEditor({
       setValidationStatus({
         valid: result.valid,
         errorCount: result.errors.filter((e) => e.severity === "error").length,
-        warningCount: result.errors.filter((e) => e.severity === "warning").length,
+        warningCount: result.errors.filter((e) => e.severity === "warning")
+          .length,
       });
     }
 
@@ -241,12 +271,14 @@ export function PolicyEditor({
                 ) : (
                   <Badge variant="destructive" className="gap-1">
                     <AlertCircle className="h-3 w-3" />
-                    {validationStatus.errorCount} error{validationStatus.errorCount !== 1 ? "s" : ""}
+                    {validationStatus.errorCount} error
+                    {validationStatus.errorCount !== 1 ? "s" : ""}
                   </Badge>
                 )}
                 {validationStatus.warningCount > 0 && (
                   <Badge variant="warning" className="gap-1">
-                    {validationStatus.warningCount} warning{validationStatus.warningCount !== 1 ? "s" : ""}
+                    {validationStatus.warningCount} warning
+                    {validationStatus.warningCount !== 1 ? "s" : ""}
                   </Badge>
                 )}
               </>
@@ -285,7 +317,11 @@ export function PolicyEditor({
                     size="sm"
                     onClick={handleSave}
                     disabled={isSaving || !validationStatus.valid}
-                    title={!validationStatus.valid ? "Fix errors before saving" : "Save policy"}
+                    title={
+                      !validationStatus.valid
+                        ? "Fix errors before saving"
+                        : "Save policy"
+                    }
                   >
                     {isSaving ? (
                       <Loader2 className="mr-1 h-4 w-4 animate-spin" />

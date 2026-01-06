@@ -30,17 +30,34 @@ Open [http://localhost:5173](http://localhost:5173).
 | Technology     | Purpose              |
 | -------------- | -------------------- |
 | TanStack Start | Full-stack framework |
-| React          | UI components        |
-| Tailwind CSS   | Styling              |
-| Vite           | Build tooling        |
+| React 19       | UI components        |
+| Tailwind CSS 4 | Styling              |
+| Vite 7         | Build tooling        |
+| Vitest         | Testing              |
 
 ## Development
 
 ```bash
-npm run dev       # Start dev server
-npm run build     # Production build
-npm run lint      # Lint code
-npm run test      # Run tests
+# Start development server with hot reload
+npm run dev
+
+# Run code quality checks
+npm run typecheck      # TypeScript type checking
+npm run lint           # ESLint
+npm run lint:fix       # ESLint with auto-fix
+npm run format         # Format with Prettier
+npm run format:check   # Check formatting
+
+# Testing
+npm test               # Run tests in watch mode
+npm test -- --run      # Run tests once
+npm run test:ui        # Run tests with UI
+npm run test:coverage  # Run tests with coverage
+
+# Build
+npm run build          # Production build
+npm run preview        # Preview production build
+npm run start          # Start production server
 ```
 
 ## Configuration
@@ -49,6 +66,14 @@ npm run test      # Run tests
 | ----------------- | ----------------------- | ----------- |
 | `CONTROL_API_URL` | `http://localhost:8081` | Control API |
 | `ENGINE_API_URL`  | `http://localhost:8080` | Engine API  |
+
+## Tool Versions
+
+This project uses [mise](https://mise.jdx.dev/) for tool version management. Run `mise install` to install the correct versions of Node.js and other tools.
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for development guidelines.
 
 ## License
 

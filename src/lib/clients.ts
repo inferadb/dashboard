@@ -1,5 +1,9 @@
 import { api, type PaginatedResponse } from "./api";
-import type { Client, ClientCertificate, CreateCertificateResponse } from "@/types/api";
+import type {
+  Client,
+  ClientCertificate,
+  CreateCertificateResponse,
+} from "@/types/api";
 
 // Client CRUD
 export async function getClients(orgId: string): Promise<Client[]> {

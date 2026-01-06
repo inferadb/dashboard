@@ -1,6 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Monitor, Smartphone, Globe, Trash2 } from "lucide-react";
 import { ConfirmDialog } from "@/components/confirm-dialog";
@@ -46,8 +52,10 @@ function SessionsPage() {
 
   const getBrowserName = (userAgent: string | null) => {
     if (!userAgent) return "Unknown browser";
-    if (userAgent.includes("Chrome") && !userAgent.includes("Edg")) return "Chrome";
-    if (userAgent.includes("Safari") && !userAgent.includes("Chrome")) return "Safari";
+    if (userAgent.includes("Chrome") && !userAgent.includes("Edg"))
+      return "Chrome";
+    if (userAgent.includes("Safari") && !userAgent.includes("Chrome"))
+      return "Safari";
     if (userAgent.includes("Firefox")) return "Firefox";
     if (userAgent.includes("Edg")) return "Edge";
     return "Unknown browser";
@@ -78,7 +86,9 @@ function SessionsPage() {
       setSessions(sessions.filter((s) => s.current));
       setShowRevokeAllConfirm(false);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to revoke sessions");
+      setError(
+        err instanceof Error ? err.message : "Failed to revoke sessions"
+      );
     } finally {
       setIsRevokingAll(false);
     }
@@ -141,7 +151,8 @@ function SessionsPage() {
                         <span>{session.ip_address || "Unknown IP"}</span>
                         <span>&middot;</span>
                         <span>
-                          Last active {formatRelativeTime(session.last_active_at)}
+                          Last active{" "}
+                          {formatRelativeTime(session.last_active_at)}
                         </span>
                       </div>
                     </div>

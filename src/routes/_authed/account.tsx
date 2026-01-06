@@ -1,6 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -88,7 +95,9 @@ function AccountPage() {
       setConfirmPassword("");
       setTimeout(() => setPasswordSuccess(false), 3000);
     } catch (err) {
-      setPasswordError(err instanceof Error ? err.message : "Failed to change password");
+      setPasswordError(
+        err instanceof Error ? err.message : "Failed to change password"
+      );
     } finally {
       setIsChangingPassword(false);
     }
@@ -115,9 +124,7 @@ function AccountPage() {
           <div className="flex items-start gap-3">
             <AlertCircle className="h-5 w-5 text-warning shrink-0 mt-0.5" />
             <div className="flex-1">
-              <h3 className="font-medium text-warning">
-                Email not verified
-              </h3>
+              <h3 className="font-medium text-warning">Email not verified</h3>
               <p className="text-sm text-muted-foreground mt-1">
                 Please verify your email address to access all features.
               </p>
@@ -278,10 +285,17 @@ function AccountPage() {
             )}
             <Button
               type="submit"
-              disabled={isChangingPassword || !currentPassword || !newPassword || !confirmPassword}
+              disabled={
+                isChangingPassword ||
+                !currentPassword ||
+                !newPassword ||
+                !confirmPassword
+              }
               className="ml-auto"
             >
-              {isChangingPassword && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+              {isChangingPassword && (
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              )}
               Change Password
             </Button>
           </CardFooter>

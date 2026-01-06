@@ -25,12 +25,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import {
   Download,
@@ -70,7 +65,11 @@ const NODE_COLORS: Record<string, string> = {
 };
 
 // Custom node component
-function EntityNode({ data }: { data: { label: string; type: string; count: number } }) {
+function EntityNode({
+  data,
+}: {
+  data: { label: string; type: string; count: number };
+}) {
   const color = NODE_COLORS[data.type] || NODE_COLORS.default;
 
   return (
@@ -400,8 +399,7 @@ export function RelationshipGraph({
                   key={type}
                   className="text-xs"
                   style={{
-                    backgroundColor:
-                      NODE_COLORS[type] || NODE_COLORS.default,
+                    backgroundColor: NODE_COLORS[type] || NODE_COLORS.default,
                     color: "white",
                   }}
                 >

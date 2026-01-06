@@ -104,7 +104,8 @@ function DashboardPage() {
             <div>
               <h3 className="font-medium">Create an Organization</h3>
               <p className="text-sm text-muted-foreground">
-                Organizations are workspaces that contain teams, vaults, and clients.
+                Organizations are workspaces that contain teams, vaults, and
+                clients.
               </p>
             </div>
           </div>
@@ -115,7 +116,8 @@ function DashboardPage() {
             <div>
               <h3 className="font-medium">Set up a Vault</h3>
               <p className="text-sm text-muted-foreground">
-                Vaults are containers for authorization policies and relationships.
+                Vaults are containers for authorization policies and
+                relationships.
               </p>
             </div>
           </div>
@@ -126,7 +128,8 @@ function DashboardPage() {
             <div>
               <h3 className="font-medium">Create a Client</h3>
               <p className="text-sm text-muted-foreground">
-                Clients are service identities that can access your vaults via the API.
+                Clients are service identities that can access your vaults via
+                the API.
               </p>
             </div>
           </div>

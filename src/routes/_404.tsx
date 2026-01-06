@@ -18,7 +18,11 @@ export function NotFoundComponent() {
               Go to Dashboard
             </Link>
           </Button>
-          <Button asChild variant="outline" onClick={() => window.history.back()}>
+          <Button
+            asChild
+            variant="outline"
+            onClick={() => window.history.back()}
+          >
             <span className="cursor-pointer">
               <ArrowLeft className="mr-2 h-4 w-4" />
               Go Back

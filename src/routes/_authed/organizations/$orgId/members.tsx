@@ -101,7 +101,9 @@ function MembersPage() {
       setInviteEmail("");
       setInviteRole("member");
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to send invitation");
+      setError(
+        err instanceof Error ? err.message : "Failed to send invitation"
+      );
     } finally {
       setIsInviting(false);
     }
@@ -113,16 +115,23 @@ function MembersPage() {
 
     try {
       await cancelInvitation(orgId, confirmCancelInvite.id);
-      setInvitations(invitations.filter((i) => i.id !== confirmCancelInvite.id));
+      setInvitations(
+        invitations.filter((i) => i.id !== confirmCancelInvite.id)
+      );
       setConfirmCancelInvite(null);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to cancel invitation");
+      setError(
+        err instanceof Error ? err.message : "Failed to cancel invitation"
+      );
     } finally {
       setIsCanceling(false);
     }
   };
 
-  const handleRoleChange = async (userId: string, newRole: "admin" | "member") => {
+  const handleRoleChange = async (
+    userId: string,
+    newRole: "admin" | "member"
+  ) => {
     try {
       const updated = await updateMemberRole(orgId, userId, newRole);
       setMembers(members.map((m) => (m.user_id === userId ? updated : m)));
@@ -205,7 +214,9 @@ function MembersPage() {
                     <Label htmlFor="role">Role</Label>
                     <Select
                       value={inviteRole}
-                      onValueChange={(v) => setInviteRole(v as "admin" | "member")}
+                      onValueChange={(v) =>
+                        setInviteRole(v as "admin" | "member")
+                      }
                     >
                       <SelectTrigger>
                         <SelectValue />

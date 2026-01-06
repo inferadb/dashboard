@@ -136,7 +136,9 @@ function TimelineEntry({ entry }: { entry: AuditEntry }) {
         </div>
         <div className="text-xs text-muted-foreground">
           {formatRelativeTime(entry.timestamp)}
-          {entry.ip_address && <span className="ml-2">from {entry.ip_address}</span>}
+          {entry.ip_address && (
+            <span className="ml-2">from {entry.ip_address}</span>
+          )}
         </div>
       </div>
     </div>
@@ -332,7 +334,10 @@ export function AuditLog({
             </CardDescription>
           </div>
           <div className="flex items-center gap-2">
-            <Tabs value={viewMode} onValueChange={(v) => setViewMode(v as "table" | "timeline")}>
+            <Tabs
+              value={viewMode}
+              onValueChange={(v) => setViewMode(v as "table" | "timeline")}
+            >
               <TabsList className="h-8">
                 <TabsTrigger value="table" className="px-2">
                   <List className="h-4 w-4" />
@@ -376,7 +381,12 @@ export function AuditLog({
               })}
             </SelectContent>
           </Select>
-          <Button variant="outline" size="icon" onClick={onRefresh} disabled={isLoading}>
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={onRefresh}
+            disabled={isLoading}
+          >
             <RefreshCw className={cn("h-4 w-4", isLoading && "animate-spin")} />
           </Button>
           <Button variant="outline" onClick={handleExport}>
@@ -437,9 +447,14 @@ export function AuditLog({
             {/* Pagination */}
             <div className="flex items-center justify-between">
               <div className="text-sm text-muted-foreground">
-                Showing {table.getState().pagination.pageIndex * table.getState().pagination.pageSize + 1} to{" "}
+                Showing{" "}
+                {table.getState().pagination.pageIndex *
+                  table.getState().pagination.pageSize +
+                  1}{" "}
+                to{" "}
                 {Math.min(
-                  (table.getState().pagination.pageIndex + 1) * table.getState().pagination.pageSize,
+                  (table.getState().pagination.pageIndex + 1) *
+                    table.getState().pagination.pageSize,
                   table.getFilteredRowModel().rows.length
                 )}{" "}
                 of {table.getFilteredRowModel().rows.length} entries
@@ -482,16 +497,17 @@ export function AuditLog({
                     new Date(b.timestamp).getTime() -
                     new Date(a.timestamp).getTime()
                 )
-                .map((entry) => (
-                  <TimelineEntry key={entry.id} entry={entry} />
-                ))
+                .map((entry) => <TimelineEntry key={entry.id} entry={entry} />)
             )}
           </div>
         )}
       </CardContent>
 
       {/* Entry Details Dialog */}
-      <Dialog open={!!selectedEntry} onOpenChange={() => setSelectedEntry(null)}>
+      <Dialog
+        open={!!selectedEntry}
+        onOpenChange={() => setSelectedEntry(null)}
+      >
         <DialogContent className="max-w-lg">
           <DialogHeader>
             <DialogTitle>Audit Entry Details</DialogTitle>
@@ -507,7 +523,8 @@ export function AuditLog({
                   <div>
                     <Badge
                       variant={
-                        ACTION_CONFIG[selectedEntry.action]?.variant || "default"
+                        ACTION_CONFIG[selectedEntry.action]?.variant ||
+                        "default"
                       }
                     >
                       {ACTION_CONFIG[selectedEntry.action]?.label ||
@@ -519,7 +536,9 @@ export function AuditLog({
                   <Label className="text-muted-foreground">Status</Label>
                   <div>
                     <Badge
-                      variant={selectedEntry.success ? "success" : "destructive"}
+                      variant={
+                        selectedEntry.success ? "success" : "destructive"
+                      }
                     >
                       {selectedEntry.success ? "Success" : "Failed"}
                     </Badge>
@@ -527,7 +546,9 @@ export function AuditLog({
                 </div>
                 <div>
                   <Label className="text-muted-foreground">Actor</Label>
-                  <div>{selectedEntry.actor_name || selectedEntry.actor_id}</div>
+                  <div>
+                    {selectedEntry.actor_name || selectedEntry.actor_id}
+                  </div>
                   <div className="text-xs text-muted-foreground">
                     {selectedEntry.actor_type}
                   </div>

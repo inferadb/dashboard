@@ -102,7 +102,8 @@ function OrganizationsPage() {
           <CardHeader>
             <CardTitle>Create Organization</CardTitle>
             <CardDescription>
-              Organizations are workspaces that contain teams, vaults, and clients.
+              Organizations are workspaces that contain teams, vaults, and
+              clients.
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -121,7 +122,10 @@ function OrganizationsPage() {
                     value={newOrgName}
                     onChange={(e) => {
                       setNewOrgName(e.target.value);
-                      if (!newOrgSlug || newOrgSlug === generateSlug(newOrgName)) {
+                      if (
+                        !newOrgSlug ||
+                        newOrgSlug === generateSlug(newOrgName)
+                      ) {
                         setNewOrgSlug(generateSlug(e.target.value));
                       }
                     }}

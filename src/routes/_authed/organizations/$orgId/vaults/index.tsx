@@ -26,9 +26,7 @@ import { formatDateTime } from "@/lib/utils";
 import { CardGridSkeleton } from "@/components/loading-skeletons";
 import type { Vault as VaultType, VaultSyncStatus } from "@/types/api";
 
-export const Route = createFileRoute(
-  "/_authed/organizations/$orgId/vaults/"
-)({
+export const Route = createFileRoute("/_authed/organizations/$orgId/vaults/")({
   loader: async ({ params }) => {
     const vaults = await getVaults(params.orgId);
     return { vaults };

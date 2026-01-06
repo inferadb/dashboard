@@ -25,7 +25,13 @@ export function CardGridSkeleton({ count = 6 }: { count?: number }) {
   );
 }
 
-export function TableSkeleton({ rows = 5, columns = 4 }: { rows?: number; columns?: number }) {
+export function TableSkeleton({
+  rows = 5,
+  columns = 4,
+}: {
+  rows?: number;
+  columns?: number;
+}) {
   return (
     <div className="rounded-md border">
       <div className="border-b bg-muted/50 p-4">
@@ -36,7 +42,10 @@ export function TableSkeleton({ rows = 5, columns = 4 }: { rows?: number; column
         </div>
       </div>
       {Array.from({ length: rows }).map((_, rowIndex) => (
-        <div key={rowIndex} className="flex items-center gap-4 border-b p-4 last:border-0">
+        <div
+          key={rowIndex}
+          className="flex items-center gap-4 border-b p-4 last:border-0"
+        >
           {Array.from({ length: columns }).map((_, colIndex) => (
             <Skeleton key={colIndex} className="h-4 w-24" />
           ))}
@@ -50,7 +59,10 @@ export function MemberListSkeleton({ count = 5 }: { count?: number }) {
   return (
     <div className="space-y-3">
       {Array.from({ length: count }).map((_, i) => (
-        <div key={i} className="flex items-center justify-between rounded-lg border p-4">
+        <div
+          key={i}
+          className="flex items-center justify-between rounded-lg border p-4"
+        >
           <div className="flex items-center gap-3">
             <Skeleton className="h-10 w-10 rounded-full" />
             <div className="space-y-1">

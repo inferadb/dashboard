@@ -16,7 +16,9 @@ export const Route = createFileRoute("/_authed")({
 });
 
 function AuthedLayout() {
-  const { user: initialUser } = Route.useRouteContext() as { user: User | null };
+  const { user: initialUser } = Route.useRouteContext() as {
+    user: User | null;
+  };
   const [user, setUser] = useState<User | null>(initialUser);
   const [loading, setLoading] = useState(!initialUser);
   const navigate = useNavigate();

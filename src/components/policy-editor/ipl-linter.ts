@@ -159,7 +159,8 @@ function validateIPL(doc: string): ValidationError[] {
               if (!isRelation && !["self", "principal"].includes(relMatch[1])) {
                 // Might be undefined relation in current entity
                 const localRelation = definedRelations.find(
-                  (r) => r.entity === currentEntity && r.relation === relMatch[1]
+                  (r) =>
+                    r.entity === currentEntity && r.relation === relMatch[1]
                 );
                 if (!localRelation) {
                   const targetStart = line.indexOf(target);
@@ -209,7 +210,7 @@ function validateIPL(doc: string): ValidationError[] {
           line: i,
           from: lineStart,
           to: lineEnd,
-          message: 'Schema declaration should be: schema <name> v<version>',
+          message: "Schema declaration should be: schema <name> v<version>",
           severity: "error",
         });
       }

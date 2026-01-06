@@ -1,6 +1,13 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
-import { ArrowLeft, Loader2, MoreHorizontal, Plus, UserPlus, Users } from "lucide-react";
+import {
+  ArrowLeft,
+  Loader2,
+  MoreHorizontal,
+  Plus,
+  UserPlus,
+  Users,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -73,13 +80,14 @@ export const Route = createFileRoute(
   "/_authed/organizations/$orgId/vaults/$vaultId"
 )({
   loader: async ({ params }) => {
-    const [vault, userGrants, teamGrants, orgMembers, teams] = await Promise.all([
-      getVault(params.orgId, params.vaultId),
-      getVaultUserGrants(params.orgId, params.vaultId),
-      getVaultTeamGrants(params.orgId, params.vaultId),
-      getOrgMembers(params.orgId),
-      getTeams(params.orgId),
-    ]);
+    const [vault, userGrants, teamGrants, orgMembers, teams] =
+      await Promise.all([
+        getVault(params.orgId, params.vaultId),
+        getVaultUserGrants(params.orgId, params.vaultId),
+        getVaultTeamGrants(params.orgId, params.vaultId),
+        getOrgMembers(params.orgId),
+        getTeams(params.orgId),
+      ]);
     return { vault, userGrants, teamGrants, orgMembers, teams };
   },
   component: VaultDetailPage,
@@ -99,10 +107,14 @@ function VaultDetailPage() {
   } = Route.useLoaderData();
 
   const [vault, setVault] = useState<Vault>(initialVault);
-  const [userGrants, setUserGrants] = useState<VaultUserGrant[]>(initialUserGrants);
-  const [teamGrants, setTeamGrants] = useState<VaultTeamGrant[]>(initialTeamGrants);
+  const [userGrants, setUserGrants] =
+    useState<VaultUserGrant[]>(initialUserGrants);
+  const [teamGrants, setTeamGrants] =
+    useState<VaultTeamGrant[]>(initialTeamGrants);
   const [editName, setEditName] = useState(vault.name);
-  const [editDescription, setEditDescription] = useState(vault.description || "");
+  const [editDescription, setEditDescription] = useState(
+    vault.description || ""
+  );
   const [isSaving, setIsSaving] = useState(false);
   const [error, setError] = useState("");
 
@@ -196,7 +208,9 @@ function VaultDetailPage() {
 
   const handleUpdateUserGrant = async (grantId: string, role: VaultRole) => {
     try {
-      const updated = await updateVaultUserGrant(orgId, vaultId, grantId, { role });
+      const updated = await updateVaultUserGrant(orgId, vaultId, grantId, {
+        role,
+      });
       setUserGrants(userGrants.map((g) => (g.id === grantId ? updated : g)));
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to update grant");
@@ -205,7 +219,9 @@ function VaultDetailPage() {
 
   const handleUpdateTeamGrant = async (grantId: string, role: VaultRole) => {
     try {
-      const updated = await updateVaultTeamGrant(orgId, vaultId, grantId, { role });
+      const updated = await updateVaultTeamGrant(orgId, vaultId, grantId, {
+        role,
+      });
       setTeamGrants(teamGrants.map((g) => (g.id === grantId ? updated : g)));
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to update grant");
@@ -359,7 +375,10 @@ function VaultDetailPage() {
 
             <TabsContent value="users" className="mt-4">
               <div className="flex justify-end mb-4">
-                <Dialog open={addUserGrantOpen} onOpenChange={setAddUserGrantOpen}>
+                <Dialog
+                  open={addUserGrantOpen}
+                  onOpenChange={setAddUserGrantOpen}
+                >
                   <DialogTrigger asChild>
                     <Button size="sm" disabled={availableUsers.length === 0}>
                       <Plus className="mr-2 h-4 w-4" />
@@ -396,7 +415,9 @@ function VaultDetailPage() {
                           <Label htmlFor="role">Role</Label>
                           <Select
                             value={selectedUserRole}
-                            onValueChange={(v) => setSelectedUserRole(v as VaultRole)}
+                            onValueChange={(v) =>
+                              setSelectedUserRole(v as VaultRole)
+                            }
                           >
                             <SelectTrigger>
                               <SelectValue />
@@ -412,7 +433,10 @@ function VaultDetailPage() {
                         </div>
                       </div>
                       <DialogFooter>
-                        <Button type="submit" disabled={isAddingUserGrant || !selectedUserId}>
+                        <Button
+                          type="submit"
+                          disabled={isAddingUserGrant || !selectedUserId}
+                        >
                           {isAddingUserGrant && (
                             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                           )}
@@ -503,7 +527,10 @@ function VaultDetailPage() {
 
             <TabsContent value="teams" className="mt-4">
               <div className="flex justify-end mb-4">
-                <Dialog open={addTeamGrantOpen} onOpenChange={setAddTeamGrantOpen}>
+                <Dialog
+                  open={addTeamGrantOpen}
+                  onOpenChange={setAddTeamGrantOpen}
+                >
                   <DialogTrigger asChild>
                     <Button size="sm" disabled={availableTeams.length === 0}>
                       <Plus className="mr-2 h-4 w-4" />
@@ -540,7 +567,9 @@ function VaultDetailPage() {
                           <Label htmlFor="teamRole">Role</Label>
                           <Select
                             value={selectedTeamRole}
-                            onValueChange={(v) => setSelectedTeamRole(v as VaultRole)}
+                            onValueChange={(v) =>
+                              setSelectedTeamRole(v as VaultRole)
+                            }
                           >
                             <SelectTrigger>
                               <SelectValue />
@@ -556,7 +585,10 @@ function VaultDetailPage() {
                         </div>
                       </div>
                       <DialogFooter>
-                        <Button type="submit" disabled={isAddingTeamGrant || !selectedTeamId}>
+                        <Button
+                          type="submit"
+                          disabled={isAddingTeamGrant || !selectedTeamId}
+                        >
                           {isAddingTeamGrant && (
                             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                           )}

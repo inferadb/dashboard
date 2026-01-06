@@ -1,0 +1,17 @@
+# mise configuration for InferaDB Dashboard
+# https://mise.jdx.dev/
+
+[tools]
+# Node.js - runtime for the dashboard
+node = "24"
+
+# npm packages installed globally via mise
+"npm:prettier" = "3"
+
+[env]
+# Ensure consistent Node.js environment
+NODE_ENV = { value = "development", default = true }
+
+[settings]
+# Trust this directory for mise configuration
+trusted = true

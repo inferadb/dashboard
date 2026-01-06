@@ -1,6 +1,13 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
-import { ArrowLeft, Copy, Loader2, MoreHorizontal, Plus, ShieldAlert } from "lucide-react";
+import {
+  ArrowLeft,
+  Copy,
+  Loader2,
+  MoreHorizontal,
+  Plus,
+  ShieldAlert,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -48,7 +55,11 @@ import {
   revokeCertificate,
 } from "@/lib/clients";
 import { formatDateTime } from "@/lib/utils";
-import type { Client, ClientCertificate, CreateCertificateResponse } from "@/types/api";
+import type {
+  Client,
+  ClientCertificate,
+  CreateCertificateResponse,
+} from "@/types/api";
 
 export const Route = createFileRoute(
   "/_authed/organizations/$orgId/clients/$clientId"
@@ -79,14 +90,18 @@ function ClientDetailPage() {
   const [createCertOpen, setCreateCertOpen] = useState(false);
   const [certName, setCertName] = useState("");
   const [isCreatingCert, setIsCreatingCert] = useState(false);
-  const [newCert, setNewCert] = useState<CreateCertificateResponse | null>(null);
+  const [newCert, setNewCert] = useState<CreateCertificateResponse | null>(
+    null
+  );
 
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const [showDeactivateConfirm, setShowDeactivateConfirm] = useState(false);
   const [isDeactivating, setIsDeactivating] = useState(false);
   const [isActivating, setIsActivating] = useState(false);
-  const [certToRevoke, setCertToRevoke] = useState<ClientCertificate | null>(null);
+  const [certToRevoke, setCertToRevoke] = useState<ClientCertificate | null>(
+    null
+  );
   const [isRevoking, setIsRevoking] = useState(false);
 
   const handleSave = async (e: React.FormEvent) => {
@@ -110,12 +125,16 @@ function ClientDetailPage() {
     setIsCreatingCert(true);
 
     try {
-      const result = await createCertificate(orgId, clientId, { name: certName });
+      const result = await createCertificate(orgId, clientId, {
+        name: certName,
+      });
       setNewCert(result);
       setCertificates([...certificates, result.certificate]);
       setCertName("");
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to create certificate");
+      setError(
+        err instanceof Error ? err.message : "Failed to create certificate"
+      );
     } finally {
       setIsCreatingCert(false);
     }
@@ -134,7 +153,9 @@ function ClientDetailPage() {
       );
       setCertToRevoke(null);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to revoke certificate");
+      setError(
+        err instanceof Error ? err.message : "Failed to revoke certificate"
+      );
     } finally {
       setIsRevoking(false);
     }
@@ -148,7 +169,9 @@ function ClientDetailPage() {
       setClient({ ...client, is_active: false });
       setShowDeactivateConfirm(false);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to deactivate client");
+      setError(
+        err instanceof Error ? err.message : "Failed to deactivate client"
+      );
     } finally {
       setIsDeactivating(false);
     }
@@ -161,7 +184,9 @@ function ClientDetailPage() {
       await activateClient(orgId, clientId);
       setClient({ ...client, is_active: true });
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to activate client");
+      setError(
+        err instanceof Error ? err.message : "Failed to activate client"
+      );
     } finally {
       setIsActivating(false);
     }
@@ -221,11 +246,7 @@ function ClientDetailPage() {
                 <Copy className="h-4 w-4" />
               </Button>
             </div>
-            <Button
-              size="sm"
-              className="mt-2"
-              onClick={() => setNewCert(null)}
-            >
+            <Button size="sm" className="mt-2" onClick={() => setNewCert(null)}>
               I've saved the private key
             </Button>
           </AlertDescription>
@@ -239,7 +260,9 @@ function ClientDetailPage() {
             <div className="flex items-center justify-between">
               <div>
                 <CardTitle>Client Settings</CardTitle>
-                <CardDescription>Manage client name and settings</CardDescription>
+                <CardDescription>
+                  Manage client name and settings
+                </CardDescription>
               </div>
               <Badge variant={client.is_active ? "success" : "secondary"}>
                 {client.is_active ? "Active" : "Inactive"}
@@ -305,12 +328,17 @@ function ClientDetailPage() {
                   onClick={handleActivate}
                   disabled={isActivating}
                 >
-                  {isActivating && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                  {isActivating && (
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  )}
                   Activate
                 </Button>
               )}
             </div>
-            <Button type="submit" disabled={isSaving || editName === client.name}>
+            <Button
+              type="submit"
+              disabled={isSaving || editName === client.name}
+            >
               {isSaving && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
               Save Changes
             </Button>
@@ -388,7 +416,9 @@ function ClientDetailPage() {
                         <Button
                           size="icon"
                           variant="outline"
-                          onClick={() => copyToClipboard(newCert.certificate.kid)}
+                          onClick={() =>
+                            copyToClipboard(newCert.certificate.kid)
+                          }
                         >
                           <Copy className="h-4 w-4" />
                         </Button>

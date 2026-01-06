@@ -1,15 +1,10 @@
 import { api, type PaginatedResponse } from "./api";
-import type {
-  Organization,
-  OrgMember,
-  OrgInvitation,
-} from "@/types/api";
+import type { Organization, OrgMember, OrgInvitation } from "@/types/api";
 
 // Organization CRUD
 export async function getOrganizations(): Promise<Organization[]> {
-  const response = await api.get<PaginatedResponse<Organization>>(
-    "/v1/organizations"
-  );
+  const response =
+    await api.get<PaginatedResponse<Organization>>("/v1/organizations");
   return response.data;
 }
 
@@ -48,10 +43,9 @@ export async function updateMemberRole(
   userId: string,
   role: "admin" | "member"
 ): Promise<OrgMember> {
-  return api.patch<OrgMember>(
-    `/v1/organizations/${orgId}/members/${userId}`,
-    { role }
-  );
+  return api.patch<OrgMember>(`/v1/organizations/${orgId}/members/${userId}`, {
+    role,
+  });
 }
 
 export async function removeMember(
@@ -85,7 +79,5 @@ export async function cancelInvitation(
   orgId: string,
   invitationId: string
 ): Promise<void> {
-  await api.delete(
-    `/v1/organizations/${orgId}/invitations/${invitationId}`
-  );
+  await api.delete(`/v1/organizations/${orgId}/invitations/${invitationId}`);
 }

@@ -1,5 +1,10 @@
 import { api, ApiClientError } from "./api";
-import type { User, AuthResponse, LoginRequest, RegisterRequest } from "@/types/api";
+import type {
+  User,
+  AuthResponse,
+  LoginRequest,
+  RegisterRequest,
+} from "@/types/api";
 
 export async function getCurrentUser(): Promise<User | null> {
   // Skip API call during SSR - the API client uses relative URLs which don't work server-side
@@ -54,7 +59,8 @@ import type { Session } from "@/types/api";
 import type { PaginatedResponse } from "./api";
 
 export async function getSessions(): Promise<Session[]> {
-  const response = await api.get<PaginatedResponse<Session>>("/v1/users/sessions");
+  const response =
+    await api.get<PaginatedResponse<Session>>("/v1/users/sessions");
   return response.data;
 }
 

@@ -45,7 +45,9 @@ function SettingsPage() {
       await updateOrganization(orgId, { name });
       setSuccess("Organization updated successfully");
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to update organization");
+      setError(
+        err instanceof Error ? err.message : "Failed to update organization"
+      );
     } finally {
       setIsSaving(false);
     }
@@ -58,7 +60,9 @@ function SettingsPage() {
       await deleteOrganization(orgId);
       navigate({ to: "/organizations" });
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to delete organization");
+      setError(
+        err instanceof Error ? err.message : "Failed to delete organization"
+      );
       setIsDeleting(false);
       setShowDeleteConfirm(false);
     }
@@ -109,7 +113,10 @@ function SettingsPage() {
             </div>
           </CardContent>
           <CardFooter>
-            <Button type="submit" disabled={isSaving || name === organization.name}>
+            <Button
+              type="submit"
+              disabled={isSaving || name === organization.name}
+            >
               {isSaving && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
               Save Changes
             </Button>

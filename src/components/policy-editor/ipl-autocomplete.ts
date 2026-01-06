@@ -120,7 +120,8 @@ const blockSnippets: Completion[] = [
     label: "module",
     type: "keyword",
     detail: "Policy module",
-    apply: "module ${name} {\n  function ${func_name}(${params}) -> Boolean {\n    ${}\n  }\n}",
+    apply:
+      "module ${name} {\n  function ${func_name}(${params}) -> Boolean {\n    ${}\n  }\n}",
     boost: 2,
   },
   {
@@ -180,9 +181,7 @@ function getSchemaContext(doc: string): SchemaContext {
 }
 
 // Main completion function
-function iplCompletions(
-  context: CompletionContext
-): CompletionResult | null {
+function iplCompletions(context: CompletionContext): CompletionResult | null {
   const { state, pos } = context;
   const doc = state.doc.toString();
   const line = state.doc.lineAt(pos);
@@ -248,7 +247,9 @@ function iplCompletions(
   }
 
   // Check for permission definition (after entity name)
-  if (lineBefore.match(/\b(delete|edit|view|share|read|write|manage|admin):\s*$/)) {
+  if (
+    lineBefore.match(/\b(delete|edit|view|share|read|write|manage|admin):\s*$/)
+  ) {
     // Suggest relation names and special keywords
     const relationSuggestions: Completion[] = schemaCtx.relations.map((r) => ({
       label: r.relation,

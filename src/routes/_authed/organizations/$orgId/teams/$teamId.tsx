@@ -135,7 +135,9 @@ function TeamDetailPage() {
       const updated = await updateTeamMember(orgId, teamId, member.user_id, {
         manager: !member.is_manager,
       });
-      setMembers(members.map((m) => (m.user_id === member.user_id ? updated : m)));
+      setMembers(
+        members.map((m) => (m.user_id === member.user_id ? updated : m))
+      );
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to update member");
     }
@@ -318,7 +320,9 @@ function TeamDetailPage() {
                       </div>
                     </TableCell>
                     <TableCell>
-                      <Badge variant={member.is_manager ? "default" : "outline"}>
+                      <Badge
+                        variant={member.is_manager ? "default" : "outline"}
+                      >
                         {member.is_manager ? "Manager" : "Member"}
                       </Badge>
                     </TableCell>
