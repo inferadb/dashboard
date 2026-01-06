@@ -42,7 +42,8 @@ Open [http://localhost:5173](http://localhost:5173).
 npm run dev
 
 # Run code quality checks
-npm run typecheck      # TypeScript type checking
+npm run generate:routes # Generate TanStack Router types
+npm run typecheck      # TypeScript type checking (auto-generates routes)
 npm run lint           # ESLint
 npm run lint:fix       # ESLint with auto-fix
 npm run format         # Format with Prettier

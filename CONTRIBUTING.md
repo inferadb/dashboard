@@ -33,7 +33,7 @@ The dev server runs at [http://localhost:5173](http://localhost:5173).
 Before submitting a pull request, ensure all checks pass:
 
 ```bash
-# Type checking
+# Type checking (auto-generates route types)
 npm run typecheck
 
 # Linting
