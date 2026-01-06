@@ -146,7 +146,7 @@ export function PolicyEditor({
     return extensions;
   }, [onChange, readOnly, showLineNumbers, showValidation]);
 
-  // Initialize editor
+  // Initialize editor once on mount. Value changes are handled by a separate useEffect.
   useEffect(() => {
     if (!editorRef.current) return;
 
@@ -174,6 +174,7 @@ export function PolicyEditor({
     return () => {
       view.destroy();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Update editor when value changes externally

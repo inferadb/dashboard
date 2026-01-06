@@ -261,6 +261,8 @@ export function AuditLog({
     []
   );
 
+  // TanStack Table's API returns functions that React Compiler can't memoize - this is expected
+  // eslint-disable-next-line react-hooks/incompatible-library
   const table = useReactTable({
     data: filteredEntries,
     columns,

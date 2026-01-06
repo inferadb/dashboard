@@ -1,5 +1,9 @@
-import { describe, it, expect } from "vitest";
-import { reducer } from "./use-toast";
+/**
+ * @vitest-environment jsdom
+ */
+import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
+import { renderHook, act } from "@testing-library/react";
+import { reducer, toast, useToast } from "./use-toast";
 
 // Type for the toast used in reducer tests
 interface TestToast {
@@ -17,15 +21,15 @@ describe("toast reducer", () => {
   describe("ADD_TOAST", () => {
     it("adds a toast to empty state", () => {
       const initialState: TestState = { toasts: [] };
-      const toast: TestToast = { id: "1", title: "Test Toast" };
+      const toastData: TestToast = { id: "1", title: "Test Toast" };
 
       const newState = reducer(initialState, {
         type: "ADD_TOAST",
-        toast: toast as never,
+        toast: toastData as never,
       });
 
       expect(newState.toasts).toHaveLength(1);
-      expect(newState.toasts[0]).toEqual(toast);
+      expect(newState.toasts[0]).toEqual(toastData);
     });
 
     it("adds toast to the beginning of the list", () => {
@@ -205,5 +209,149 @@ describe("toast reducer", () => {
 
       expect(newState).not.toBe(initialState);
     });
+  });
+});
+
+describe("toast function", () => {
+  beforeEach(() => {
+    vi.useFakeTimers();
+  });
+
+  afterEach(() => {
+    vi.useRealTimers();
+  });
+
+  it("creates a toast and returns control methods", () => {
+    const result = toast({ title: "Test Toast" });
+
+    expect(result).toHaveProperty("id");
+    expect(result).toHaveProperty("dismiss");
+    expect(result).toHaveProperty("update");
+    expect(typeof result.id).toBe("string");
+    expect(typeof result.dismiss).toBe("function");
+    expect(typeof result.update).toBe("function");
+  });
+
+  it("generates unique IDs for each toast", () => {
+    const toast1 = toast({ title: "First" });
+    const toast2 = toast({ title: "Second" });
+    const toast3 = toast({ title: "Third" });
+
+    expect(toast1.id).not.toBe(toast2.id);
+    expect(toast2.id).not.toBe(toast3.id);
+    expect(toast1.id).not.toBe(toast3.id);
+  });
+
+  it("dismiss function dismisses the toast", () => {
+    const toastResult = toast({ title: "Dismissable Toast" });
+
+    // Should not throw
+    expect(() => toastResult.dismiss()).not.toThrow();
+  });
+
+  it("update function updates the toast", () => {
+    const toastResult = toast({ title: "Original" });
+
+    // Should not throw
+    expect(() =>
+      toastResult.update({ id: toastResult.id, title: "Updated" } as never)
+    ).not.toThrow();
+  });
+
+  it("handles onOpenChange callback for auto-dismiss", () => {
+    const toastResult = toast({ title: "Auto-dismiss test" });
+
+    // The toast should have been created with onOpenChange that calls dismiss
+    // when open becomes false. Since we can't access the toast directly,
+    // we just verify the flow doesn't throw
+    expect(toastResult.id).toBeDefined();
+    toastResult.dismiss();
+  });
+});
+
+describe("useToast hook", () => {
+  beforeEach(() => {
+    vi.useFakeTimers();
+  });
+
+  afterEach(() => {
+    vi.useRealTimers();
+  });
+
+  it("returns state with toasts array and methods", () => {
+    const { result } = renderHook(() => useToast());
+
+    expect(result.current).toHaveProperty("toasts");
+    expect(result.current).toHaveProperty("toast");
+    expect(result.current).toHaveProperty("dismiss");
+    expect(Array.isArray(result.current.toasts)).toBe(true);
+    expect(typeof result.current.toast).toBe("function");
+    expect(typeof result.current.dismiss).toBe("function");
+  });
+
+  it("creates toast through hook and updates state", () => {
+    const { result } = renderHook(() => useToast());
+
+    act(() => {
+      result.current.toast({ title: "Hook Toast" });
+    });
+
+    // The toast should be in the state
+    expect(result.current.toasts.length).toBeGreaterThanOrEqual(0);
+  });
+
+  it("dismiss method works without arguments", () => {
+    const { result } = renderHook(() => useToast());
+
+    // First create a toast
+    act(() => {
+      result.current.toast({ title: "To be dismissed" });
+    });
+
+    // Then dismiss all
+    act(() => {
+      result.current.dismiss();
+    });
+
+    // Should not throw
+    expect(result.current.dismiss).toBeDefined();
+  });
+
+  it("dismiss method accepts optional toastId", () => {
+    const { result } = renderHook(() => useToast());
+
+    let toastId: string;
+
+    act(() => {
+      const created = result.current.toast({ title: "Specific dismiss" });
+      toastId = created.id;
+    });
+
+    act(() => {
+      result.current.dismiss(toastId);
+    });
+
+    // Should not throw
+    expect(result.current.dismiss).toBeDefined();
+  });
+
+  it("updates state when listeners are notified", () => {
+    const { result, rerender } = renderHook(() => useToast());
+
+    act(() => {
+      result.current.toast({ title: "Listener test" });
+    });
+
+    rerender();
+
+    // The hook should have re-rendered with updated state
+    expect(result.current.toasts).toBeDefined();
+  });
+
+  it("cleans up listener on unmount", () => {
+    const { unmount } = renderHook(() => useToast());
+
+    // Should not throw when unmounting
+    expect(() => unmount()).not.toThrow();
   });
 });

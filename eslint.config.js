@@ -73,6 +73,7 @@ export default [
       ".vinxi/**",
       ".tanstack/**",
       "node_modules/**",
+      "coverage/**",
       "*.config.js",
       "*.config.ts",
     ],

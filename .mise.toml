@@ -11,7 +11,3 @@ node = "24"
 [env]
 # Ensure consistent Node.js environment
 NODE_ENV = { value = "development", default = true }
-
-[settings]
-# Trust this directory for mise configuration
-trusted = true
