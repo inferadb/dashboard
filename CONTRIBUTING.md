@@ -1,109 +1,59 @@
-# Contributing to InferaDB Dashboard
+# Contributing to InferaDB
 
-Thank you for your interest in contributing to the InferaDB Dashboard!
+Thank you for your interest in contributing to InferaDB! We welcome contributions from the community and are grateful for any help you can provide.
 
-## Development Setup
+## Code of Conduct
 
-### Prerequisites
+This project and everyone participating in it is governed by the [Contributor Covenant Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. Please report unacceptable behavior to [open@inferadb.com](mailto:open@inferadb.com).
 
-- [Node.js](https://nodejs.org/) 24+ (we recommend using [mise](https://mise.jdx.dev/))
-- npm 10+
+## How to Contribute
 
-### Getting Started
+### Reporting Issues
 
-```bash
-# Clone the repository
-git clone https://github.com/inferadb/dashboard
-cd dashboard
+- **Bug Reports**: Search existing issues first to avoid duplicates. Include version information, steps to reproduce, expected vs actual behavior, and relevant logs.
+- **Feature Requests**: Describe the use case, proposed solution, and alternatives considered.
+- **Security Issues**: Do **not** open public issues for security vulnerabilities. Instead, email [security@inferadb.com](mailto:security@inferadb.com).
 
-# Install tool versions (if using mise)
-mise install
+### Pull Requests
 
-# Install dependencies
-npm install
+1. **Fork the repository** and create your branch from `main`
+2. **Follow the development workflow** documented in the repository's README
+3. **Write clear commit messages** following [Conventional Commits](https://www.conventionalcommits.org/):
+   - `feat:` New features
+   - `fix:` Bug fixes
+   - `docs:` Documentation changes
+   - `test:` Test additions or improvements
+   - `refactor:` Code refactoring
+   - `chore:` Maintenance tasks
+4. **Ensure all tests pass** before submitting
+5. **Update documentation** if your changes affect public APIs or user-facing behavior
+6. **Submit a pull request** with a clear description of your changes
 
-# Start development server
-npm run dev
-```
+### Development Setup
 
-The dev server runs at [http://localhost:5173](http://localhost:5173).
+Each repository has its own development setup and workflow. Please refer to:
 
-## Code Quality
+- **[DEVELOPMENT.md](./DEVELOPMENT.md)** for repository-specific development and contribution guidance
+- **README.md** for general project information and quick start instructions
 
-Before submitting a pull request, ensure all checks pass:
+These documents cover prerequisites, dependencies, build commands, code style guidelines, and repository-specific requirements.
 
-```bash
-# Type checking (auto-generates route types)
-npm run typecheck
+## Review Process
 
-# Linting
-npm run lint
+1. **Automated Checks**: CI will run tests, linters, and formatters
+2. **Peer Review**: At least one maintainer will review your contribution
+3. **Feedback**: Address any review comments
+4. **Approval**: Once approved, a maintainer will merge your contribution
 
-# Formatting
-npm run format:check
+## License
 
-# Or fix formatting issues automatically
-npm run format
-```
-
-### Code Style
-
-- **TypeScript**: Strict mode enabled with `noUnusedLocals` and `noUnusedParameters`
-- **Formatting**: Prettier with default settings (see `.prettierrc`)
-- **Linting**: ESLint 9 with flat config (see `eslint.config.js`)
-
-### Naming Conventions
-
-| Type | Convention | Example |
-|------|------------|---------|
-| Files | kebab-case | `policy-editor.tsx` |
-| Components | PascalCase | `PolicyEditor` |
-| Hooks | camelCase with `use` prefix | `useToast` |
-| Types/Interfaces | PascalCase | `ApiError` |
-
-### Import Aliases
-
-Use the `@/` alias for imports from the `src/` directory:
-
-```typescript
-import { Button } from "@/components/ui/button";
-import { api } from "@/lib/api";
-```
-
-## Project Structure
-
-```
-src/
-├── components/       # React components
-│   ├── ui/           # Base UI primitives (shadcn/ui style)
-│   ├── layout/       # Header, Sidebar
-│   └── ...           # Feature components
-├── hooks/            # Custom React hooks
-├── lib/              # Utilities and API clients
-├── routes/           # TanStack file-based routes
-└── types/            # TypeScript type definitions
-```
-
-## Pull Request Process
-
-1. Create a feature branch from `main`
-2. Make your changes
-3. Ensure all checks pass (`npm run typecheck && npm run lint && npm run format:check`)
-4. Submit a pull request with a clear description
-
-## Testing
-
-```bash
-# Run tests in watch mode
-npm test
-
-# Run tests once
-npm test -- --run
-
-# Run with coverage
-npm run test:coverage
-```
+By contributing to InferaDB, you agree that your contributions will be licensed under the same license as the repository you are contributing to. See the LICENSE file in each repository for details.
 
 ## Questions?
 
-Open an issue on GitHub if you have questions or need help.
+If you have questions or need help:
+
+- Open a [Discussion](https://github.com/inferadb/inferadb/discussions) on GitHub
+- Email us at [open@inferadb.com](mailto:open@inferadb.com)
+
+Thank you for helping make InferaDB better!
