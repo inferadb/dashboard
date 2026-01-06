@@ -2,8 +2,9 @@
     <p><a href="https://inferadb.com"><img src=".github/inferadb.png" width="100" alt="InferaDB Logo" /></a></p>
     <h1>InferaDB Management Dashboard</h1>
     <p>
+        <a href="https://discord.gg/inferadb"><img src="https://img.shields.io/badge/Discord-Join%20us-5865F2?logo=discord&logoColor=white" alt="Discord" /></a>
         <a href="https://codecov.io/github/inferadb/dashboard"><img src="https://codecov.io/github/inferadb/dashboard/graph/badge.svg?token=S4493HEHYQ" alt="Code Coverage" /></a>
-        <a href="#license"><img src="https://img.shields.io/badge/license-MIT%2FApache--2.0-blue.svg"></a>
+        <a href="#license"><img src="https://img.shields.io/badge/license-MIT%2FApache--2.0-blue.svg" alt="License" /></a>
     </p>
     <p>Account management, policy design, simulation and observability</p>
 </div>
@@ -79,6 +80,10 @@ This project uses [mise](https://mise.jdx.dev/) for tool version management. Run
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for development guidelines.
+
+## Community
+
+Join us on [Discord](https://discord.gg/inferadb) to discuss InferaDB, get help with your projects, and connect with other developers. Whether you have questions, want to share what you're building, or are interested in contributing, we'd love to have you!
 
 ## License
 
