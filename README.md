@@ -1,6 +1,10 @@
 <div align="center">
     <p><a href="https://inferadb.com"><img src=".github/inferadb.png" width="100" alt="InferaDB Logo" /></a></p>
     <h1>InferaDB Management Dashboard</h1>
+    <p>
+        <a href="https://codecov.io/github/inferadb/dashboard"><img src="https://codecov.io/github/inferadb/dashboard/graph/badge.svg?token=S4493HEHYQ" alt="Code Coverage" /></a>
+        <a href="./LICENSE"><img src="https://img.shields.io/crates/l/inferadb.svg"></a>
+    </p>
     <p>Account management, policy design, simulation and observability</p>
 </div>
 
