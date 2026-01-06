@@ -3,7 +3,7 @@
     <h1>InferaDB Management Dashboard</h1>
     <p>
         <a href="https://codecov.io/github/inferadb/dashboard"><img src="https://codecov.io/github/inferadb/dashboard/graph/badge.svg?token=S4493HEHYQ" alt="Code Coverage" /></a>
-        <a href="./LICENSE"><img src="https://img.shields.io/crates/l/inferadb.svg"></a>
+        <a href="#license"><img src="https://img.shields.io/badge/license-MIT%2FApache--2.0-blue.svg"></a>
     </p>
     <p>Account management, policy design, simulation and observability</p>
 </div>
@@ -82,4 +82,9 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for development guidelines.
 
 ## License
 
-[Apache License 2.0](LICENSE)
+Licensed under either of:
+
+- [Apache License, Version 2.0](LICENSE-APACHE)
+- [MIT License](LICENSE-MIT)
+
+at your option.
