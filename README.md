@@ -1,6 +1,8 @@
-# InferaDB Dashboard
-
-**Web console** — policy design, simulation, and observability for InferaDB authorization.
+<div align="center">
+    <p><a href="https://inferadb.com"><img src=".github/inferadb.png" width="100" alt="InferaDB Logo" /></a></p>
+    <h1>InferaDB Management Dashboard</h1>
+    <p>Account management, policy design, simulation and observability</p>
+</div>
 
 > [!IMPORTANT]
 > Under active development. Not production-ready.

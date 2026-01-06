@@ -1,3 +1,7 @@
+# Labeler configuration
+# See: https://github.com/actions/labeler
+# Labels must match those defined in .github/maintenance/labels.sh
+
 # Documentation
 area/docs:
   - changed-files:
@@ -10,15 +14,6 @@ area/ci:
   - changed-files:
       - any-glob-to-any-file:
           - ".github/**/*"
-
-# Docker
-area/docker:
-  - changed-files:
-      - any-glob-to-any-file:
-          - "**/Dockerfile*"
-          - "**/.dockerignore"
-          - "**/docker-compose*.yml"
-          - "**/docker-compose*.yaml"
 
 # Configuration
 area/config:
@@ -72,16 +67,6 @@ area/a11y:
           - "**/*.a11y.*"
           - "**/accessibility/**/*"
 
-# Styles
-area/styles:
-  - changed-files:
-      - any-glob-to-any-file:
-          - "**/*.css"
-          - "**/*.scss"
-          - "**/*.sass"
-          - "**/*.less"
-          - "**/tailwind.config.*"
-
 # API/Data
 area/api:
   - changed-files:
@@ -90,8 +75,9 @@ area/api:
           - "**/services/**/*"
           - "**/queries/**/*"
 
-# Repository label
-repo/dashboard:
+# Authentication
+area/auth:
   - changed-files:
       - any-glob-to-any-file:
-          - "**/*"
+          - "**/auth/**/*"
+          - "**/authentication/**/*"
