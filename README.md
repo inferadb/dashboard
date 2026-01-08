@@ -83,13 +83,8 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for development guidelines.
 
 ## Community
 
-Join our [Discord](https://discord.gg/inferadb) to discuss InferaDB, get help, or contribute.
+Join us on [Discord](https://discord.gg/inferadb) for questions, discussions, and contributions.
 
 ## License
 
-Licensed under either of:
-
-- [Apache License, Version 2.0](LICENSE-APACHE)
-- [MIT License](LICENSE-MIT)
-
-at your option.
+Dual-licensed under [MIT](LICENSE-MIT) or [Apache 2.0](LICENSE-APACHE).
