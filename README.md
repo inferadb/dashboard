@@ -6,7 +6,7 @@
         <a href="https://codecov.io/github/inferadb/dashboard"><img src="https://codecov.io/github/inferadb/dashboard/graph/badge.svg?token=S4493HEHYQ" alt="Code Coverage" /></a>
         <a href="#license"><img src="https://img.shields.io/badge/license-MIT%2FApache--2.0-blue.svg" alt="License" /></a>
     </p>
-    <p>Account management, policy design, simulation and observability</p>
+    <p>Tenant management, policy design, simulation, and observability</p>
 </div>
 
 > [!IMPORTANT]
@@ -14,10 +14,10 @@
 
 ## Features
 
-- **Tenant Management** — Create and manage organizations, teams, and vaults
+- **Tenant Management** — Manage organizations, teams, and vaults
 - **Policy Editor** — Edit IPL schemas with syntax highlighting and validation
 - **Decision Simulator** — Test authorization decisions before deployment
-- **Relationship Visualizer** — Explore relationship graphs interactively
+- **Relationship Visualizer** — Explore relationship graphs
 - **Audit Explorer** — Review authorization decisions and access patterns
 
 ## Quick Start
@@ -43,7 +43,7 @@ Open [http://localhost:5173](http://localhost:5173).
 ## Development
 
 ```bash
-# Start development server with hot reload
+# Start dev server (hot reload)
 npm run dev
 
 # Run code quality checks
@@ -75,7 +75,7 @@ npm run start          # Start production server
 
 ## Tool Versions
 
-This project uses [mise](https://mise.jdx.dev/) for tool version management. Run `mise install` to install the correct versions of Node.js and other tools.
+This project uses [mise](https://mise.jdx.dev/) for tool versions. Run `mise install` to set up required tools.
 
 ## Contributing
 
@@ -83,7 +83,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for development guidelines.
 
 ## Community
 
-Join us on [Discord](https://discord.gg/inferadb) to discuss InferaDB, get help with your projects, and connect with other developers. Whether you have questions, want to share what you're building, or are interested in contributing, we'd love to have you!
+Join our [Discord](https://discord.gg/inferadb) to discuss InferaDB, get help, or contribute.
 
 ## License
 
